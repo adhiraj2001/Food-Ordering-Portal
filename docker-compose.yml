@@ -1,0 +1,52 @@
+version: "3.9"
+
+services: 
+    frontend:
+        build: ./frontend/
+        tty: true
+        stdin_open: true
+        ports:
+            - "3000:3000"
+        depends_on:
+            - backend
+        networks:
+            - web-net
+
+    backend:
+        build: ./backend/
+        ports:
+            - "4000:4000"
+        depends_on:
+            - mongo
+        networks:
+            - db-net
+            - web-net
+
+    mongo:
+        image: mongo:latest
+        ports:
+            - "27017:27017"
+        networks:
+            - db-net
+        volumes:
+            - mongo-data:/data/db
+
+    nginx:
+        build: ./nginx/
+        ports: 
+            - 5000:80
+        networks:
+            - web-net
+            - db-net
+        restart: always
+
+networks:
+    db-net:
+        driver: bridge
+    web-net:
+        driver: bridge
+    
+
+volumes: 
+    mongo-data:
+        driver: local
