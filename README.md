@@ -1,5 +1,7 @@
 # Food Ordering Web App
 
+> Full-stack MERN application with Docker containerization
+
 ## About
 
 This is a Web application based on MERN stack - MongoDB, Express.js, React.js, and Node.js.
@@ -10,6 +12,15 @@ With this application Vendors can sell their products while Buyers can surf and 
 - Ordering system is made convinient for Buyers and even Vendors.
 - Searching, Sorting and Filtering of Products from various Vendors is made easy through this app.
 - Buyers can look at the status of their products as they are being prepared.
+
+## Features
+
+- **Dual User System**: Separate interfaces for Buyers and Vendors
+- **Fuzzy Search**: Typo-tolerant product search
+- **Virtual Wallet**: Cashless ordering system for buyers
+- **Order Tracking**: Multi-stage order pipeline with real-time status updates
+- **Vendor Analytics**: Dashboard with top-selling items and customer distribution graphs
+- **Advanced Filtering**: Multi-dimensional product filtering (veg/non-veg, price, shop)
 
 ## Installations
 
@@ -49,6 +60,23 @@ npm start
 
 ## Running the App
 
+### With Docker (Recommended)
+
+```bash
+# Start all services (Frontend, Backend, MongoDB, Nginx)
+docker-compose up
+
+# Access the application at http://localhost:5000
+
+# Rebuild containers after code changes
+docker-compose up --build
+
+# Stop all services
+docker-compose down
+```
+
+### Without Docker (Local Development)
+
 * Run Mongo daemon:
 ```
 sudo mongod
@@ -66,9 +94,24 @@ npm start
 * Run React Frontend:
 ```
 cd frontend
-npm install/
+npm install
 npm start
 ```
 
 Navigate to [http://localhost:3000/](http://localhost:3000/) in your browser.
 
+## API Documentation
+
+The backend exposes RESTful APIs for managing buyers, vendors, products, and orders.
+
+**Base URLs:**
+- Local Development: `http://localhost:4000`
+- Docker Deployment: `http://localhost:5000/api`
+
+**API Resources:**
+- `/buyers` - Buyer authentication and profile management
+- `/vendors` - Vendor authentication and profile management
+- `/products` - Product CRUD operations with fuzzy search
+- `/orders` - Order creation and status tracking
+
+For detailed endpoint documentation, request/response examples, and field specifications, see [docs/API.md](docs/API.md).
