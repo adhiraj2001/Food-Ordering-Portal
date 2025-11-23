@@ -7,25 +7,27 @@ The Food Ordering Portal uses a microservices-inspired architecture with Docker 
 ## System Architecture
 
 ```
-                    ┌─────────────────┐
-                    │  Port 5000      │
-                    │  Nginx Proxy    │
-                    └────────┬────────┘
+                    ┌────────────────┐
+                    │  Port 5000     │
+                    │  Nginx Proxy   │
+                    └────────┬───────┘
                              │
                 ┌────────────┼────────────┐
                 │            │            │
-         / requests    /api requests     │
+               `/`         `/api`         │
+            requests      requests        │
                 │            │            │
-         ┌──────▼──────┐  ┌─▼──────────┐ │
-         │  Frontend   │  │  Backend   │ │
-         │  React:3000 │  │  Express   │ │
-         │             │  │  :4000     │ │
-         └─────────────┘  └──────┬─────┘ │
-                                 │       │
-                          ┌──────▼───────▼─┐
-                          │   MongoDB      │
-                          │   :27017       │
-                          └────────────────┘
+                │            │            │
+         ┌──────▼──────┐  ┌──▼────────┐   │
+         │  Frontend   │  │  Backend  │   │
+         │  React      │  │  Express  │   │
+         │  :3000      │  │  :4000    │   │
+         └─────────────┘  └──────┬────┘   │
+                                 │        │
+                          ┌──────▼────────▼─┐
+                          │     MongoDB     │
+                          │     :27017      │
+                          └─────────────────┘
 ```
 
 ## Services
