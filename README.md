@@ -22,6 +22,19 @@ With this application Vendors can sell their products while Buyers can surf and 
 - **Vendor Analytics**: Dashboard with top-selling items and customer distribution graphs
 - **Advanced Filtering**: Multi-dimensional product filtering (veg/non-veg, price, shop)
 
+## Architecture
+
+The application uses a multi-container Docker setup with 4 services:
+
+- **frontend** (React) - Port 3000: User interface
+- **backend** (Express/Node.js) - Port 4000: RESTful API server
+- **mongo** (MongoDB) - Port 27017: Database
+- **nginx** (Reverse Proxy) - Port 5000: Routes `/` to frontend, `/api` to backend
+
+**Network Isolation:** Two Docker networks (`web-net`, `db-net`) isolate the database from direct frontend access for security.
+
+For detailed architecture information, Docker setup, and network topology, see [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+
 ## Installations
 
 ### Node
